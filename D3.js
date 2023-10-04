@@ -142,7 +142,7 @@ let eyeColor = {
   yellow: [],
   brown: [],
   red: [],
-  bluegray: [],
+  "blue-gray": [],
 };
 
 /* ESERCIZIO 5
@@ -168,7 +168,7 @@ for (i = 0; i < starWarsCharacters.length; i++) {
       break;
 
     case "blue-gray":
-      eyeColor.bluegray.push(starWarsCharacters[i]);
+      eyeColor["blue-gray"].push(starWarsCharacters[i]);
       break;
   }
 }
@@ -236,16 +236,60 @@ for (let i = 0; i < characters.length; i++) {
   }
 }
 console.log(characters);
+
 /* --EXTRA-- ESERCIZIO 10
   Crea una funzionalità che selezioni un elemento casuale dall'array "starWarsCharacters" e ne stampi in console le proprietà in modo discorsivo (a tuo piacimento).
 */
 
-let charArray = Object.keys(starWarsCharacters);
-let randomNumber = Math.random();
-let charIndex = Math.floor(randomNumber * charArray.length);
+const randomNumber = Math.floor(Math.random() * starWarsCharacters.length);
 
-let randomKey = charArray[charIndex];
+const randomCharacter = starWarsCharacters[randomNumber];
 
-let randomValue = starWarsCharacters[randomKey];
+let genderCharacter;
 
-console.log(randomValue);
+switch (randomCharacter.gender) {
+  case "male":
+    genderCharacter = "he";
+    break;
+  case "female":
+    genderCharacter = "she";
+    break;
+  case "robot":
+    genderCharacter = "it";
+    break;
+}
+
+let thirdGenderCharacter;
+
+switch (randomCharacter.gender) {
+  case "male":
+    thirdGenderCharacter = "his";
+    break;
+  case "female":
+    thirdGenderCharacter = "her";
+    break;
+  case "robot":
+    thirdGenderCharacter = "its";
+    break;
+}
+
+console.log(
+  "The character",
+  randomCharacter.name,
+  "is tall",
+  randomCharacter.height,
+  "and " + genderCharacter + " has a mass of",
+  randomCharacter.mass,
+  "kg,",
+  genderCharacter,
+  randomCharacter.hair_color !== "n/a"
+    ? "have " + randomCharacter.hair_color + " hair,"
+    : "is Bold,",
+  genderCharacter + " have",
+  randomCharacter.eye_color + " eyes",
+  "and " +
+    thirdGenderCharacter +
+    " birth year is " +
+    randomCharacter.birth_year +
+    "."
+);
